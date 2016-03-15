@@ -1,0 +1,244 @@
+---
+layout: post
+title: Bluemix Basics
+permalink: /bluemix-basics2/
+---
+
+##SMS with Twilio
+
+###Sending text messages through an app
+Twilio is a service that allows applications to send and receive SMS Messages and Voice mail. For this tutorial, we will only be demonstrating the SMS Messaging feature as there are limitations to what free users can do.
+
+>**NOTE:**
+
+>Twilio periodically loses support for Philippine Numbers (area code +63xxxxxxxxxx) meaning there will be times you will not be able to register numbers from the Philippines.
+
+<br>
+
+#### Create a Twilio account
+1. Go to [Twilio's website](https://www.twilio.com) and click the `Sign Up` button on the upper right
+
+2.  Fill the registration up, and choose the following options in the drop down list
+	||||
+	|---|---|---|
+	| **What are you building?** | SMS Alerts|
+	| **Choose your language** | Java |
+	| **Which product do you plan to use first?** | Programmable SMS |
+	
+	<br>
+4. Click `Get Started`
+
+5. Before you can proceed to using Twilio's services, Twilio has to verify one phone number from you, choose `Philippines` (area code +63) and in the textbox, the rest of your phone number (ex. 9xxxxxxxxx)
+
+6. You will be redirected to a page with a textbox. Once you receive the verification code in your phone, enter it in the text box and proceed.
+
+8. On the current page, click `Get your first Twilio Number` and click `Choose this number`. Take note of your new number and click `Done`.
+
+9.  In order for the Twilio service in Bluemix to work, it requires your Twilio account's `Auth Token` and `Account SID` both which can be found [here](https://www.twilio.com/user/account) by clicking `Show API Credentials`. Take note of both of these credentials, you will be using this when binding Twilio to your Bluemix app.
+
+#### Setting Twilio up
+Before you are able to send text messages through the app, there are some things you need to set up since Free users have some limitations.
+
+1. To be able to send to Philippine numbers, you have to enable it [here](https://www.twilio.com/user/account/settings/international/sms).
+2. If you intend to send messages to phone numbers besides the one you registered when you created your account, you can verify them by going [here](https://www.twilio.com/user/account/phone-numbers/verified) and clicking `Verify a Number`.
+
+####Fork a Github Repository
+1. Go to [Github](https://github.com) and log into your account.
+
+1. Go to the [twilio-sms](https://github.com/trishcaburian/twilio-sms) repository and fork it
+
+<br>
+
+####Create a Bluemix DevOps Project based on the Github Repository
+
+1. Open another tab in your web browser and login to [Bluemix DevOps](https://hub.jazz.net/)
+
+1. Click `Create Project`
+2. Name your project `twilio-sms`.
+	
+4. Click `Link to an existing GitHub repository`.  
+
+5. Select the repository `<username>/twilio-sms`
+
+6. Ensure the following options are chosen:
+
+	||||
+	|---|---|---|
+	| **Private Project** | checked |
+	| **Add features for Scrum development** | checked |
+	| **Make this a Bluemix Project** | checked |
+	| **Region** | IBM Bluemix US South |
+	| **Organization** | you may leave the default selection |		
+	| **Space** | dev |
+
+	<br>
+
+7. Click the `CREATE` button and wait for your project to be created.
+
+	<br>
+
+#### Create a Build Stage
+
+1. Click the `BUILD & DEPLOY` button.
+
+2. Click the `Add Stage` button. 
+
+3. Set the name from `My Stage` to `Build Stage`
+
+4. On the `Input` Tab, set the following values
+
+	||||
+	|---|---|---|
+	| **Input Type** | SCM Repository |
+	| **Git URL** | https://github.com/[your_username]/twilio-sms.git |
+	| **Branch** | master |
+	| **Stage Trigger** | Run jobs whenever a change is pushed to Git |
+
+	<br>
+
+5. Go to the `Jobs` Tab and click `Add Job` and set `Build` as the Job type.
+
+6. Rename `Build` to `Gradle Assemble`
+
+7. Set the following values
+
+	||||
+	|---|---|---|
+	| **Builder Type** | Gradle |		
+	| **Build Shell Command** | `#!/bin/bash`<br>`gradle assemble`  |	
+	| **Stop running this stage if this job fails** | checked |
+
+	<br>
+
+8. Click the `Save` Button.	
+
+#### Create a Deploy Stage
+
+1. Click the `Add Stage` Button
+
+2. Rename `MyStage` to `Deploy Stage`
+
+3. On the `Input` Tab, set the following values
+
+	||||
+	|---|---|---|
+	| **Input Type** | Build Artifacts |
+	| **Stage** | Build Stage |
+	| **Job** | Gradle Assemble |
+	| **Stage Trigger** | Run jobs when the previous stage is completed |
+
+	<br>
+	
+4. On the `Jobs` Tab Click `Add Job` and select `Deploy`
+
+5. Rename `Deploy` to `Cloud Foundry Push to Dev Space`.
+
+6. Set the following values:
+
+	||||
+	|---|---|---|
+	| **Deployer Type** | Cloud Foundry |		
+	| **Target** | IBM Bluemix US South - https://api.ng.bluemix.net |		
+	| **Organization** | you may leave the default selection |		
+	| **Space** | dev |	
+	| **Application Name** | blank |		
+	| **Deploy Script** | `#!/bin/bash`<br> `cf push twilio-sms-<your_name> -m 512M -p build/libs/twil.war` |	
+	| **Stop running this stage if this job fails** | checked |
+
+	<br>
+
+7. Click `Save`
+
+#### Deploy The application
+
+1. Click the `Run Stage` icon of the `Build Stage`
+
+	>Make sure all the stages have passed before proceeding to the next step.
+
+2. Go to the [Bluemix](https://console.ng.bluemix.net) Website and Login.
+
+3. Go to the `Dashboard` Tab and click the widget of your application `twilio-sms-<yourname>`
+
+4. Click `Add a Service or API`
+
+5. In the Catalog page look for the `Twilio` service and click it.
+
+6. Rename the Service name to `Twilio - <your_name>` .
+
+7. Enter your Twilio account's `Auth Token` and `Account SID` in their respective fields
+
+7. Click `Create`
+
+8.  When prompted to Restage Application, press `Restage`
+
+You have successfully deployed your Twilio Application
+
+#### Using the Application
+1. On a new tab, access your new application using the url `http://twilio-sms-<yourname>.mybluemix.net`
+
+2. Input the phone number Twilio provided for your account in the first textbox.
+
+3.  Input the phone number you will be sending the message to in the second textbox.
+
+4. Input the message you would like to send on the last textbox.
+
+5. Click `Send!`. 
+
+6. Your text message should arrive at its destination shortly.
+
+#### Understanding the code
+In order to for the code to work with the service, we have to get the credentials of the service using the following lines of code in `TwilioConnect.java`
+
+> ````	JSONObject creds = (JSONObject) service.get("credentials");
+>                 this.accountSID = (String) creds.get("accountSID");
+>                 this.authToken = (String) creds.get("authToken"); ````
+
+These credentials will be used to initialize a new TwilioRestClient instance in `TwilioServlet.java` which represents your Twilio account with the code.
+
+> ````TwilioRestClient tw_client = new TwilioRestClient(accountSID, authToken); ````
+
+#####Sending a message
+We need three parameters before we can send the message: `From`, `To`, and `Body`. How we get them is shown in the code below:
+
+index.jsp
+
+> ```` <form method="POST" action="TwilioServlet"> 			<p>
+>             <input name="twilio_num" id="twilio_num" type="text" value="" placeholder="Enter your Twilio phone number here">
+>             <p>
+>             <input name="sendto" id="sendto" type="text" value="" placeholder="Enter phone number here">
+>             </p>
+>             <p>
+>             <textarea id="smsmsg" name="smsmsg" placeholder="Enter message here"></textarea>
+>             </p>
+>             <input type="submit" value="Send!">
+>         </form>` ````
+
+TwilioServlet.java
+
+> ` Map<String, String> params = new HashMap<String, String>();`
+>         
+>         params.put("From", request.getParameter("twilio_num"));
+>         params.put("Body", request.getParameter("smsmsg"));
+>         params.put("To", request.getParameter("sendto"));
+
+
+Finally we will be creating an instance of `SmsFactory`,  a method of the TwilioRestClient that will be the one carrying out the sending of the message. If an error occurs during this stage, it will throw an exception.
+
+````
+SmsFactory msgFactory = tw_client.getAccount().getSmsFactory();
+        try {
+            msg = msgFactory.create(params);
+        }
+        catch (TwilioRestException e) {
+            throw new ServletException(e);
+        }
+````
+
+####Housekeeping
+
+1. Go to IBM Bluemix Website and click the Dashboard.
+2. From the Applications section, click the gear icon in the widget of the twilio-sms-[your_name] application.
+3. Select the Delete App from the list.
+4. In the Services tab, select the created Twilio service.
+5. Click the Delete button.
+####End of Tutorial
