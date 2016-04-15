@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Voter Notification Web App
+title: Voter Notification
 permalink: /hackathon/
 ---
 
