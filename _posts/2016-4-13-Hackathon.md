@@ -5,7 +5,7 @@ permalink: /hackathon/
 ---
 
 #### Keeping voters informed
-While the Philippines is often referred to as the "Social Networking Capital of the World”, not all Filipino voters may have internet access, keeping them out of the loop. However, Filipinos are also known for their frequent use of mobile phones. This app takes advantage of this fact. 
+While the Philippines is often referred to as the "Social Networking Capital of the Worldâ€, not all Filipino voters may have internet access, keeping them out of the loop. However, Filipinos are also known for their frequent use of mobile phones. This app takes advantage of this fact. 
 The following are the intended purposes  to targets of the web application:
 
  - **Campaign managers** can use it to spread news about various events they have planned to voters who live near the event area.
@@ -71,7 +71,7 @@ Before you are able to send text messages through the app, there are some things
 	cf push hackathon-gitgit-aw -m 512M -p myapp.war
 	````
 4. Go to the Bluemix website and log into your account.
-5. Upon logging in, navigate to your account’s dashboard by clicking `DASHBOARD` on the upper right if logging in did not already redirect you to it.
+5. Upon logging in, navigate to your accountâ€™s dashboard by clicking `DASHBOARD` on the upper right if logging in did not already redirect you to it.
 
 	> Since you have already uploaded the application to Bluemix, its widget should be present on your dashboard
 
