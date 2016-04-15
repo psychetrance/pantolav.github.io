@@ -56,17 +56,17 @@ Before you are able to send text messages through the app, there are some things
 
 1. Open a terminal window (Command Prompt for Windows machines) and change the directory to the `v-notif` folder.
 2. Log into your Bluemix account through the `cf login` command:
-````
-cf login -a https://api.ng.bluemix.net -s dev
-````
+	````
+	cf login -a https://api.ng.bluemix.net -s dev
+	````
 3. Upload `myapp.war` to your Bluemix account with the command:
-````
-cf push <app name> -m 512M -p myapp.war 
-````
+	````
+	cf push <app name> -m 512M -p myapp.war 
+	````
 **Example**
-````
-cf push hackathon-gitgit-aw -m 512M -p myapp.war
-````
+	````
+	cf push hackathon-gitgit-aw -m 512M -p myapp.war
+	````
 4. Go to the Bluemix website and log into your account.
 5. Upon logging in, navigate to your account’s dashboard by clicking `DASHBOARD` on the upper right if logging in did not already redirect you to it.
 
