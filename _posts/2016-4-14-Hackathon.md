@@ -66,9 +66,7 @@ Before you are able to send text messages through the app, there are some things
 	````
 	cf push <app name> -m 512M -p myapp.war 
 	````
-	
-**Example**
-
+	Example
 	````
 	cf push hackathon-gitgit-aw -m 512M -p myapp.war
 	````
@@ -79,7 +77,6 @@ Before you are able to send text messages through the app, there are some things
 
 6.  Click the application widget to view its overview.
 7. Click `ADD A SERVICE OR API`, this will redirect you to the service catalog.
-
 
 #### Adding Services: Twilio
 1. In the Catalog page look for the `Twilio` service and click it.
