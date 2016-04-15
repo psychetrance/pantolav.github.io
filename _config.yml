@@ -81,3 +81,4 @@ exclude:
     - CNAME
 
 future:true
+encoding: UTF-8
