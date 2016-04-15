@@ -12,7 +12,7 @@ The following are the intended purposes  to targets of the web application:
 This can also function as an advisory as these kinds of events often mean some roads may be blocked 
  - Inform **voters** about various events that take place a few months before the election (Debates, speeches, motorcades, etc.)
 
-Deploying this app requires (two?) services from Bluemix, Twilio and Postgresql.
+Deploying this app requires services from Bluemix, Twilio and Postgresql.
 
 #### Downloading the application for deployment
  1. Create a new folder named `v-notif`. 
