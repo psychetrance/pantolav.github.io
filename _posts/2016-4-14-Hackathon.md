@@ -56,14 +56,19 @@ Before you are able to send text messages through the app, there are some things
 
 1. Open a terminal window (Command Prompt for Windows machines) and change the directory to the `v-notif` folder.
 2. Log into your Bluemix account through the `cf login` command:
+
 	````
 	cf login -a https://api.ng.bluemix.net -s dev
 	````
+	
 3. Upload `myapp.war` to your Bluemix account with the command:
+
 	````
 	cf push <app name> -m 512M -p myapp.war 
 	````
+	
 **Example**
+
 	````
 	cf push hackathon-gitgit-aw -m 512M -p myapp.war
 	````
@@ -74,6 +79,7 @@ Before you are able to send text messages through the app, there are some things
 
 6.  Click the application widget to view its overview.
 7. Click `ADD A SERVICE OR API`, this will redirect you to the service catalog.
+
 
 #### Adding Services: Twilio
 1. In the Catalog page look for the `Twilio` service and click it.
