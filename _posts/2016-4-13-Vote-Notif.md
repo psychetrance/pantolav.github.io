@@ -70,9 +70,8 @@ cf push hackathon-gitgit-aw -m 512M -p myapp.war
 4. Go to the Bluemix website and log into your account.
 5. Upon logging in, navigate to your account’s dashboard by clicking `DASHBOARD` on the upper right if logging in did not already redirect you to it.
 
-> Since you have already uploaded the application to Bluemix, its widget should be present on your dashboard
+	> Since you have already uploaded the application to Bluemix, its widget should be present on your dashboard
 
-Since you have already uploaded the application to Bluemix, it’s widget should be present on your dashboard.
 6.  Click the application widget to view its overview.
 7. Click `ADD A SERVICE OR API`, this will redirect you to the service catalog.
 
