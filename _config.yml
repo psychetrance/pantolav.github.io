@@ -80,5 +80,5 @@ exclude:
     - README.md
     - CNAME
 
-future:true
+future: true
 encoding: UTF-8
