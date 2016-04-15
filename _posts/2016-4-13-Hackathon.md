@@ -4,6 +4,7 @@ title: Voter Notification
 permalink: /hackathon/
 ---
 
+Powerpoint presentation: [here](https://github.com/trishcaburian/trishcaburian.github.io/raw/master/Voter%20Notification%20Web%20App.pptx)
 #### Keeping voters informed
 While the Philippines is often referred to as the "Social Networking Capital of the World”, not all Filipino voters may have internet access, keeping them out of the loop. However, Filipinos are also known for their frequent use of mobile phones. This app takes advantage of this fact. 
 The following are the intended purposes  to targets of the web application:
