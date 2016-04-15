@@ -51,7 +51,9 @@ Before you are able to send text messages through the app, there are some things
 
 
 #### Deploying the application
-This part will be assuming that the user already has a Bluemix account and already has the necessary terminal commands installed.
+
+> This part will be assuming that the user already has a Bluemix account and already has the necessary terminal commands installed.
+
 1. Open a terminal window (Command Prompt for Windows machines) and change the directory to the `v-notif` folder.
 2. Log into your Bluemix account through the `cf login` command:
 ````
